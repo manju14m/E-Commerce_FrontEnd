@@ -1,15 +1,13 @@
-import {createStore} from 'redux'
-import Reducer from '../Reducer'
+import {applyMiddleware, createStore, compose} from 'redux'
+import rootReducer from '../Reducer'
 import Products from '../Data/ProductData'
+import thunk from "redux-thunk"
 
 
-const initialState={
-    cart : [],
-    totalItems :0,
-    filteredData : Products
-    // user : "Guest"
-}
 
-const store = createStore(Reducer,initialState, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
+
+
+const store = createStore(rootReducer,compose(applyMiddleware(thunk)))
 
 export default store;
+// window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()

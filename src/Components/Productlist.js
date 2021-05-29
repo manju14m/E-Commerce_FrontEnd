@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{useState,useEffect} from 'react'
 import {connect} from 'react-redux'
 // import {productContext} from './context'
 // import Products from '../Data/ProductData'
@@ -26,6 +26,32 @@ function ProductList({filteredData}){
     //     // console.log(Products.filter((item)=> item.tag === value ))
     //     console.log(value)
     // }
+// const [time, setTime] = useState()
+
+//     let timeOut = setInterval(frame,1000)
+
+//     var hour
+//     var second
+//     var minute
+
+//     function frame(){
+//        let d = new Date();
+//          hour = d.getHours();
+//          second = d.getSeconds();
+//          minute = d.getMinutes();
+//          setTime(`${hour} H : ${minute}M : ${second}S`)
+//     }
+
+//     let sale = (
+//         <div>
+//             Sale Ends In <span>{hour} H</span>
+//         </div>
+//     )
+
+    useEffect(()=>{
+        // inputRef.current.focus();
+        {document.title ="Home Page"}
+    },[])
 
 
     return(
@@ -43,8 +69,8 @@ function ProductList({filteredData}){
                 </div>
             </div> */}
 
-
-            
+            {/* {sale} */}  
+        {/* <h2 className="">{`sales ends in ${time}`}</h2>     */}
         <h1 className="text-center products mb-0 pb-0" ><em>Our products </em></h1>
         <h4 className="text-info mt-0">{`${filteredData[0].tag === "T-shirt" && filteredData[1].tag === "Denim"? "" : "("+ filteredData[0].tag+"s)" }`}</h4>
             <div className="col-12  d-flex flex-wrap">
@@ -62,7 +88,7 @@ function ProductList({filteredData}){
 
 const mapStateToProps = (state)=>{
     return {
-        filteredData : state.filteredData
+        filteredData : state.cart.filteredData
 }
 
 }

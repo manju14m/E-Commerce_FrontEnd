@@ -1,8 +1,16 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import {connect} from 'react-redux'
 import {NavLink} from 'react-router-dom'
 
 function Cart({cart,totalItems,dispatch}){
+
+
+
+    useEffect(()=>{
+        // inputRef.current.focus();
+        {document.title ="Cart"}
+    },[])
+
 
     if(cart.length === 0){
         return(
@@ -10,7 +18,7 @@ function Cart({cart,totalItems,dispatch}){
                 {/* { console.log("cart is empty")}  */}
                 <h1>Your Bag Is Empty</h1>
                 <button className="btn-primary p-1 rounded m-3">
-                    <NavLink to="/main" className="nav-link text-white" >Continue Shopping</NavLink>
+                    <NavLink to="/home" className="nav-link text-white" >Continue Shopping</NavLink>
                 </button>
                </div>
         )
@@ -64,7 +72,7 @@ function Cart({cart,totalItems,dispatch}){
            <div className=" p-4">
                 <h3>Subtotal ({totalItems}  {`${totalItems>1 ? "items" :  "item"}`}) : <span className="text-danger">$ {totalPrice()}</span> </h3>
                 <button className="btn-primary p-1 rounded m-3">
-                <NavLink to="/main" className="nav-link text-white" >Continue Shopping</NavLink>
+                <NavLink to="/home" className="nav-link text-white" >Continue Shopping</NavLink>
                 </button>
            </div>
            <div className="d-flex flex-column ml-3">
@@ -100,8 +108,8 @@ function Cart({cart,totalItems,dispatch}){
 
 const mapStateToProps = (state, dispatch)=>{
     // console.log(dispatch)
-    return {cart:state.cart,
-            totalItems:state.totalItems
+    return {cart:state.cart.cart,
+            totalItems:state.cart.totalItems
 
     }
 }
@@ -116,3 +124,4 @@ const mapStateToProps = (state, dispatch)=>{
 // }
 
 export default connect(mapStateToProps) (Cart);
+

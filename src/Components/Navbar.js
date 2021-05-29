@@ -3,8 +3,11 @@ import {NavLink} from 'react-router-dom'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import {connect} from 'react-redux'
 import logo from '../Img/logo.png'
+import {Route} from 'react-router-dom'
+import Cart from './Cart'
 // import {useSelector} from 'react'
 // import $ from 'jquery'
+import {useHistory } from 'react-router-dom'
 
 
 
@@ -18,7 +21,7 @@ function NavBar({totalItems,cart,dispatch}){
     //     // console.log(cart) 
     // }
 
-    
+    const history = useHistory()
 
     const totalitems = () =>(
        dispatch( {
@@ -60,13 +63,21 @@ function NavBar({totalItems,cart,dispatch}){
     //   );
 
 
+    const signoutHandler = () =>{
+        console.log("signout")
+        localStorage.clear()
+        history.push("/")
+        window.location.reload(false)
+    } 
+
+
     return(
         <div className="navbar navbar-expand-sm bg-info d-flex justify-content-around fixed-top">
            
             <div style={{"width":"30%"}} className="d-flex justify-content-around">
                 
                 
-                <NavLink to="/main" className="nav-link text-white"><img src={logo} alt = "my logo" height="50px" width="50px" className = "rounded" /></NavLink>
+                <NavLink to="/home" className="nav-link text-white"><img src={logo} alt = "my logo" height="50px" width="50px" className = "rounded" /></NavLink>
             </div>
             <div style={{"width":"70%"}} className=" d-flex justify-content-around ">
                 <NavLink to="/cart" className="nav-link  cart text-white"><i className="fa fa-shopping-bag" aria-hidden="true"></i><span className="cartcount">{totalItems}</span></NavLink>
@@ -83,10 +94,15 @@ function NavBar({totalItems,cart,dispatch}){
                         <p onClick={()=>{dispatch(filter("jacket"))}}>jacket</p>
                     </div>
                 </div>
-                <div className="text-white">
-                <i className="fa fa-user-circle text-white ml-4" aria-hidden="true"></i><em className="text-warning" style={{"textTransform":"capitalize"}}> Hello, { localStorage.getItem("name")}</em>
+                <div className="text-white ">
+                <i className="fa fa-user-circle text-white ml-4" aria-hidden="true"></i>
+                <em className="text-warning dropdown dropdownbtn" style={{"textTransform":"capitalize"}}> Signed In
+                    <div className="dropdown-content text-center">
+                        <p onClick={signoutHandler}>Signout</p>
+                    </div>
+                </em>
                 </div>
-                
+                {/* <Route  path="/cart" render = {()=><div> <Cart /> </div>}></Route> */}
             </div>
         </div>
         )}
@@ -105,8 +121,8 @@ function NavBar({totalItems,cart,dispatch}){
     
 
 const mapStateToProps = (state,dispatch)=>{
-    return { totalItems: state.totalItems,
-             cart: state.cart
+    return { totalItems: state.cart.totalItems,
+             cart: state.cart.cart
     }
 }
 

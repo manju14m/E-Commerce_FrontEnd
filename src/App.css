@@ -9,6 +9,19 @@ body {
   font-size: 16px;
 }
 
+.welcome_navbar {
+  width: 100%;
+  height: 50px;
+  background-color: blueviolet;
+  color: white;
+}
+
+.welcome_navbar .welcome_navlink {
+  color: white;
+  text-decoration: none;
+  margin: 10px 30px 0 0;
+}
+
 .nav-link {
   padding: 0;
   font-size: 1rem;
@@ -45,8 +58,8 @@ body {
 .card:hover {
   -webkit-box-shadow: 0 0 8px 2px;
           box-shadow: 0 0 8px 2px;
-  -webkit-transition: .5s;
-  transition: .5s;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
 }
 
 .dropdown {
@@ -90,11 +103,12 @@ body {
 }
 
 .welcome {
-  height: 100vh;
+  margin: 0 auto;
+  height: 70vh;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  color: #ebd726;
+  color: #f1e5e5;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
@@ -105,7 +119,27 @@ body {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  background-color: lightseagreen;
+  background-color: #f7c3c3;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.6)), to(rgba(0, 0, 0, 0.6)));
+  background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6));
+}
+
+.welcome-root {
+  width: 100%;
+  margin: 0 auto;
+  height: 100vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  color: #f1e5e5;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background-color: #f7c3c3;
   background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.6)), to(rgba(0, 0, 0, 0.6)));
   background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6));
 }
@@ -115,5 +149,51 @@ body {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+}
+
+.form-holder {
+  min-width: 350px;
+  border-radius: 20px;
+  background-color: #79a0a0;
+}
+
+.form-holder input {
+  margin: 0 auto;
+}
+
+.form-holder span {
+  color: red;
+}
+
+.form-holder .form-group {
+  margin: 20px 20px;
+}
+
+.card {
+  width: 250px;
+}
+
+.card img {
+  width: 250px;
+  height: 250px;
+}
+
+.card p {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 0.9em;
+}
+
+@media (max-width: 560px) {
+  body {
+    font-size: 14px;
+  }
+  .card {
+    width: 160px;
+  }
+  .card img {
+    width: 160px;
+    height: 150px;
+  }
 }
 /*# sourceMappingURL=App.css.map */
