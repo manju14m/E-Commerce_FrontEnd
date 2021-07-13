@@ -1,5 +1,6 @@
 import React,{useState,useEffect} from 'react'
-import {connect} from 'react-redux'
+import {connect,useDispatch} from 'react-redux'
+import * as dbAction from '../Action/dbAction'
 // import {productContext} from './context'
 // import Products from '../Data/ProductData'
 // import { tempProducts } from './FilteredProducts'
@@ -48,10 +49,16 @@ function ProductList({filteredData}){
 //         </div>
 //     )
 
+    const dispatch = useDispatch()
     useEffect(()=>{
         // inputRef.current.focus();
+        // dispatch(dbAction.get())
+        // dbAction.put(filteredData)
         {document.title ="Home Page"}
     },[])
+
+
+    
 
 
     return(
@@ -94,3 +101,4 @@ const mapStateToProps = (state)=>{
 }
 
 export default connect(mapStateToProps) (ProductList);
+

@@ -4,7 +4,7 @@ import Products from '../Data/ProductData'
 
 
 const initialState={
-    cart : [], 
+    cartItems : [], 
     totalItems :0,
     filteredData : Products
     // user : "Guest"
@@ -13,50 +13,59 @@ const initialState={
 export default function cartReducer(state = initialState,action){
     // let arr = []
     switch(action.type){
+        case "add_to_redux" :
+            const {filteredData,totalItems } = action.payload
+            console.log("redux")
+            console.log(filteredData)
+            console.log(totalItems)
+            return {...state, filteredData,totalItems 
+            // return true;
+        }
+
         case "Add_to_cart":
 
-        let temparr = state.cart.map(item => item.id)
+        let temparr = state.cartItems.map(item => item.id)
             // console.log(`temparr ${temparr}`)
 
         if (temparr.includes(action.payload.id)){
             // console.log("item present")
-            let Temp = state.cart.map((item)=>{
+            let Temp = state.cartItems.map((item)=>{
                 if(item.id === action.payload.id){
                     item = {...item, quantity:Number(item.quantity)+1}
                 }
                 return item;
             }) 
-            return{...state,cart:Temp}
+            return{...state,cartItems:Temp}
         }    
         else{
             // console.log("not present")
             // console.log(action.payload.id)
-            let temp=  {...state , cart: [...state.cart,action.payload]}
-            // console.log(temp.cart)
-            // console.log(temp.cart)
-            let ids = temp.cart.map(o => o.id)
+            let temp=  {...state , cartItems: [...state.cartItems,action.payload]}
+            // console.log(temp.cartItems)
+            // console.log(temp.cartItems)
+            let ids = temp.cartItems.map(o => o.id)
                 // console.log(ids)
-            let filtered = temp.cart.filter(({id}, index) => !ids.includes(id, index + 1))  
+            let filtered = temp.cartItems.filter(({id}, index) => !ids.includes(id, index + 1))  
             // console.log(filtered)  
     
                 // return temp
-                return {...state,cart:filtered} 
+                return {...state,cartItems:filtered} 
         }
            
 
 
 
 
-        //   let temp =  {...state, cart:[...state.cart,action.payload] }
+        //   let temp =  {...state, cartItems:[...state.cartItems,action.payload] }
 
 
-        //    let Temp = state.cart.map((item)=>{
+        //    let Temp = state.cartItems.map((item)=>{
         //         if(item.id === action.payload.id){
         //             item = {...item, quantity:Number(item.quantity)+1}
         //             // console.log(item.id)
         //         }
                 
-        //         // return {...state , cart: [...state.cart,action.payload]}
+        //         // return {...state , cartItems: [...state.cartItems,action.payload]}
         //         return item;
         //     }) 
 
@@ -65,7 +74,7 @@ export default function cartReducer(state = initialState,action){
         //     console.log(ids)
         //     let filtered = Temp.filter(({id}, index) => !ids.includes(id, index + 1))
 
-        //     return {...state,cart:filtered} 
+        //     return {...state,cartItems:filtered} 
 
 
 
@@ -79,9 +88,9 @@ export default function cartReducer(state = initialState,action){
 
 
 
-            // return {...state, cart:[...state.cart,action.payload] };
+            // return {...state, cartItems:[...state.cartItems,action.payload] };
 
-            // let Temp = state.cart.map((item)=>{
+            // let Temp = state.cartItems.map((item)=>{
             //     if(item.id === action.payload.id){
             //         item = {...item, quantity:Number(item.quantity)+1}
             //         // console.log(item.id)
@@ -90,27 +99,27 @@ export default function cartReducer(state = initialState,action){
             //     //    return action.payload
             //     // }
             //     // console.log(item)
-            //     // // return {...state , cart: [...state.cart,action.payload]}
+            //     // // return {...state , cartItems: [...state.cartItems,action.payload]}
             //     return item;
             // }) 
 
-            // // return {...state,cart:Temp}
+            // // return {...state,cartItems:Temp}
 
             // // console.log(temp)
 
 
 
-            // return {...state , cart: [...state.cart,action.payload]}
+            // return {...state , cartItems: [...state.cartItems,action.payload]}
             
         
 
 
 
-            // console.log("adding to cart")
-            // for(let i=0; i<=state.cart.length; i++){
+            // console.log("adding to cartItems")
+            // for(let i=0; i<=state.cartItems.length; i++){
             //     console.log(i)
             // }
-            // // if(action.payload.id in state.cart.id){
+            // // if(action.payload.id in state.cartItems.id){
 
             // }
             
@@ -118,19 +127,19 @@ export default function cartReducer(state = initialState,action){
             //     console.log(arr)
             // }
 
-            // if (state.cart.length === 0){
-            //     console.log(state.cart.length)
-            //     console.log(state.cart)
-            //     return {...state, cart:[...state.cart,action.payload] };
+            // if (state.cartItems.length === 0){
+            //     console.log(state.cartItems.length)
+            //     console.log(state.cartItems)
+            //     return {...state, cartItems:[...state.cartItems,action.payload] };
                 
             // }
 
             // else{
             //     arr = [1,2,3,4]
-            //     return {...state, cart:[...state.cart,action.payload] };
+            //     return {...state, cartItems:[...state.cartItems,action.payload] };
             // }
                 
-            // state.cart.map((item)=>{
+            // state.cartItems.map((item)=>{
             //     if(item.id === action.payload.id){
             //         console.log("item present")
                 
@@ -143,32 +152,32 @@ export default function cartReducer(state = initialState,action){
             
         case "INCREASE":
             // console.log("increasing :" + action.payload.id)
-            let TempIncreaseCart = state.cart.map((item)=>{
+            let TempIncreaseCart = state.cartItems.map((item)=>{
                 if(item.id === action.payload.id){
                     item = {...item, quantity:Number(item.quantity)+1}
                 }
                 return item;
             }) 
-            return{...state,cart:TempIncreaseCart}
+            return{...state,cartItems:TempIncreaseCart}
             
         case "DECREASE":
-            let TempDecreaseCart = state.cart.map((item)=>{
+            let TempDecreaseCart = state.cartItems.map((item)=>{
                 if(item.id === action.payload.id && item.quantity !==1){
                     item = {...item, quantity:Number(item.quantity)-1}
                 }
                 return item;
             }) 
-            return{...state,cart:TempDecreaseCart}
+            return{...state,cartItems:TempDecreaseCart}
 
 
             // let TempDecreaseCart = [];
             // if(action.payload.quantity === 1 ){
-            //     TempDecreaseCart =  state.cart.filter((item)=> item.id !== action.payload.id );
+            //     TempDecreaseCart =  state.cartItems.filter((item)=> item.id !== action.payload.id );
             // // console.log("its one")
             // console.log(TempDecreaseCart)
             // }
             // else{
-            //      TempDecreaseCart = state.cart.map((item)=>{
+            //      TempDecreaseCart = state.cartItems.map((item)=>{
             //         if(item.id === action.payload.id){
             //             item = {...item, quantity:Number(item.quantity)-1}
                     
@@ -177,22 +186,22 @@ export default function cartReducer(state = initialState,action){
             //         return item;
             //     })
             //     // console.log(TempDecreaseCart)
-            //     return{...state,cart:TempDecreaseCart}
+            //     return{...state,cartItems:TempDecreaseCart}
             
             
 
             case "Total_Items":
                 // console.log("totalling")
-                return {...state, totalItems: state.cart.reduce((total,cartItem)=> Number(cartItem.quantity)+ Number(total),0 )}
+                return {...state, totalItems: state.cartItems.reduce((total,cartItem)=> Number(cartItem.quantity)+ Number(total),0 )}
            
                 // return {...state, totalItems:0}
            
-                // state.cart.map((item)=>{
+                // state.cartItems.map((item)=>{
             //     if(item.id === action.payload.id){
             //         if(item.quantity === 1){
             //             // remove(item.id);
             //             console.log(item)
-            //             state.cart.filter((item)=> item.id !== action.payload.id)
+            //             state.cartItems.filter((item)=> item.id !== action.payload.id)
             //         }
             //         else{
             //             item = {...item, quantity:Number(item.quantity)-1}
@@ -203,15 +212,15 @@ export default function cartReducer(state = initialState,action){
             //     return item;
             //     console.log("id equal")
             // })    
-            // return{...state,cart:TempDecreaseCart}
+            // return{...state,cartItems:TempDecreaseCart}
             // console.log("i outside")
           
         case "CLEAR":
-            return {...state, cart:[]}
+            return {...state, cartItems:[]}
         
         case "REMOVE":
             // console.log("item removed")
-            return {...state, cart:state.cart.filter((item)=> item.id !==action.payload.id)}
+            return {...state, cartItems:state.cartItems.filter((item)=> item.id !==action.payload.id)}
           
             
 

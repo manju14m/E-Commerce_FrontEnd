@@ -55,6 +55,7 @@ export default function SignIn() {
         // dispatch(authAction.login(body))
         const redirectUser = () =>{
             window.location.reload(false)
+            // history.push("/home")
         }
 
         login ? dispatch(authAction.signin(body,redirectUser)) : dispatch(authAction.signup(body, redirectUser))

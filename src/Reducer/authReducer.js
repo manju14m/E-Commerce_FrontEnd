@@ -10,18 +10,18 @@ export default function authReducer(state = initialState,action){
         case "SIGNIN" : 
         return{
             ...state,
-             token : action.payload.idToken,
-             userData : action.payload
+            token : action.payload.idToken,
+            userData : action.payload
         }
         case "SIGNUP" :
             // console.log(`signup${action.payload.idToken}`)
             return{
                 ...state,
-                 token : action.payload.idToken,
-                 userData : action.payload
+                token : action.payload.idToken,
+                userData : action.payload
             }
         
-        case "SIGNOUT" :
+        // case "SIGNOUT" :
             
         
         default:

@@ -1,3 +1,7 @@
 export const SIGNIN = "LOGIN"
 export const SIGNOUT = "SIGNOUT"
 export const SIGNUP = "SIGNUP"
+export const POST = "POST"
+export const PUT = "PUT"
+export const GET = "GET"
+export const DELETE = "DELETE"

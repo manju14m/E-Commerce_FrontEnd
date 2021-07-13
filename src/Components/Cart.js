@@ -2,7 +2,7 @@ import React, {useEffect} from 'react'
 import {connect} from 'react-redux'
 import {NavLink} from 'react-router-dom'
 
-function Cart({cart,totalItems,dispatch}){
+function Cart({cartItems,totalItems,dispatch}){
 
 
 
@@ -12,7 +12,7 @@ function Cart({cart,totalItems,dispatch}){
     },[])
 
 
-    if(cart.length === 0){
+    if(cartItems.length === 0){
         return(
             <div className="margintop mx-auto text-center">
                 {/* { console.log("cart is empty")}  */}
@@ -20,7 +20,7 @@ function Cart({cart,totalItems,dispatch}){
                 <button className="btn-primary p-1 rounded m-3">
                     <NavLink to="/home" className="nav-link text-white" >Continue Shopping</NavLink>
                 </button>
-               </div>
+            </div>
         )
         
         
@@ -29,7 +29,7 @@ function Cart({cart,totalItems,dispatch}){
     const totalPrice = ()=>{
 
         // console.log("total")
-      return cart.reduce((total,item)=> (Number(item.price)*Number(item.quantity)) + total,0)
+    return cartItems.reduce((total,item)=> (Number(item.price)*Number(item.quantity)) + total,0)
     }
 
     // let totalItems = () =>{
@@ -40,7 +40,7 @@ function Cart({cart,totalItems,dispatch}){
 
     const increase = (id) =>(
         {
-            type:"INCREASE",
+            type:"Add_to_cart",
             payload:{id}
         }
     )
@@ -51,7 +51,7 @@ function Cart({cart,totalItems,dispatch}){
             payload:{id,quantity}
         }
     )
-     
+
     const clear = () =>(
         {
             type:"CLEAR"
@@ -66,7 +66,7 @@ function Cart({cart,totalItems,dispatch}){
     )
 
     return(
-       <div className="margintop mx-auto text-center">
+        <div className="margintop mx-auto text-center">
            {/* {console.log(cart)} */}
            <h1>Your Bag</h1>
            <div className=" p-4">
@@ -77,7 +77,7 @@ function Cart({cart,totalItems,dispatch}){
            </div>
            <div className="d-flex flex-column ml-3">
                 {
-                    cart.map((data,key)=>(
+                    cartItems.map((data,key)=>(
                         
                         <div className="d-flex my-2" key={key}> 
                             <img style={{"height":"150px","width":"150px"}} src={data.image_src} alt="cart_image" />
@@ -108,7 +108,7 @@ function Cart({cart,totalItems,dispatch}){
 
 const mapStateToProps = (state, dispatch)=>{
     // console.log(dispatch)
-    return {cart:state.cart.cart,
+    return {cartItems:state.cart.cartItems,
             totalItems:state.cart.totalItems
 
     }

@@ -37,22 +37,20 @@ export default function App() {
         <Provider store ={store}>
                 
             <Switch>
+                {console.log("app component")}
                 {
                     !isLoggedIn && (
                         <Route path="/" exact>
                             <Welcome/>
-                            {/* {document.title ="my app"} */}
                         </Route>
                     )
                 }
                 <Route path="/signin">
-                    {isLoggedIn && <Redirect to="/home" />
-                    
-                     }
+                    {isLoggedIn && <Redirect to="/home" />}
                     {!isLoggedIn && <SignIn/>}
                     {/* {document.title ="signin"} */}
                 </Route>
-
+                
                 {/* {
                     isLoggedIn && (
                         <Route path="/home">

@@ -12,7 +12,7 @@ import {useHistory } from 'react-router-dom'
 
 
 
-function NavBar({totalItems,cart,dispatch}){
+function NavBar({totalItems,cartItems,dispatch}){
     // const counter = useSelector(state => state.count)
 
     // const totalitems = () =>{
@@ -122,7 +122,7 @@ function NavBar({totalItems,cart,dispatch}){
 
 const mapStateToProps = (state,dispatch)=>{
     return { totalItems: state.cart.totalItems,
-             cart: state.cart.cart
+             cartItems: state.cart.cartItems
     }
 }
 
